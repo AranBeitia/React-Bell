@@ -1,0 +1,12 @@
+.header {
+	background-color: pink;
+
+	&__brand {
+		display: flex;
+		align-items: center;
+	}
+
+	&__logo {
+		max-height: 4rem;
+	}
+}

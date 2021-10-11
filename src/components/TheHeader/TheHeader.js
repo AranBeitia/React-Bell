@@ -1,13 +1,20 @@
 import React from 'react'
-import logo from '../assets/logo.svg'
+import { NavLink } from 'react-router-dom'
+import * as routes from '../../constants/routes'
+import logo from '../../assets/img/logo.svg'
+import './TheHeader.scss'
 
 class TheHeader extends React.Component {
 	render() {
 		return (
-			<article>
-				<h1>Header</h1>
-				<img src={logo} className="App-logo" alt="logo" />
-			</article>
+			<header className="header">
+				<nav>
+					<NavLink to={routes.HOME} className="header__brand">
+						<img src={logo} alt="Bell logo" className="header__logo" />
+						<span>Bell helmets</span>
+					</NavLink>
+				</nav>
+			</header>
 		)
 	}
 }

@@ -1,10 +1,12 @@
 import React from 'react'
-
+import TheHeader from '../../components/TheHeader'
+import TheMenu from '../../components/TheMenu'
 class HomePage extends React.Component {
 	render() {
 		return (
 			<article>
-				<h1>Home page</h1>
+				<TheHeader />
+				<TheMenu />
 			</article>
 		)
 	}
