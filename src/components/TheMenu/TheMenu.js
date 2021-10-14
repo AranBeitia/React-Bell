@@ -1,18 +1,24 @@
 import React from 'react'
-// import { NavLink } from 'react-router-dom'
-// import * as routes from '../../constants/routes'
+
 import './TheMenu.scss'
 
 import Panel from './Panel'
-class TheMenu extends React.Component {
-	render() {
-		return (
-			<nav>
-				<ul className="panels">
-					<Panel />
-				</ul>
-			</nav>
-		)
-	}
+
+function TheMenu({ isLoading, categories }) {
+	return (
+		<nav>
+			{isLoading && <p>Loading...</p>}
+			<ul className="panels">
+				{categories.map((item) => (
+					<Panel
+						key={item.id}
+						title={item.title}
+						id={item.id}
+						path={item.url}
+					/>
+				))}
+			</ul>
+		</nav>
+	)
 }
 export default TheMenu
