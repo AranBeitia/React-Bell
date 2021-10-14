@@ -17,17 +17,15 @@ function createBg() {
 	`
 }
 
-console.log(createBg())
-
 export const PanelStyled = styled.li`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex: 1;
-	background-size: cover;
+	/* background-size: cover; */
 
-	${createBg()}
+	/* ${createBg()} */
 `
 
 export default PanelStyled
