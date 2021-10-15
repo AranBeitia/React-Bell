@@ -2,4 +2,8 @@
 	display: flex;
 	min-height: 93vh;
 	overflow: hidden;
+
+	@media all and (max-width: 480px) {
+		flex-direction: column;
+	}
 }
