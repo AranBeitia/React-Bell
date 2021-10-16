@@ -11,7 +11,6 @@ class TheHeader extends React.Component {
 				<nav>
 					<NavLink to={routes.HOME} className="header__brand">
 						<img src={logo} alt="Bell logo" className="header__logo" />
-						<span>Bell helmets</span>
 					</NavLink>
 				</nav>
 			</header>

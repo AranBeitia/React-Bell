@@ -48,7 +48,7 @@ function App() {
 					)}
 				/>
 				<Route
-					path={`${routes.HELMETS}:category`}
+					path={routes.HELMETS}
 					exact
 					render={(routeProps) => <Helmets {...routeProps} />}
 				/>

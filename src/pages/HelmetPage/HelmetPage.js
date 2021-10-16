@@ -1,13 +1,12 @@
 import React from 'react'
+import withHeader from '../../hoc/withHeader'
 
-class HelmetPage extends React.Component {
-	render() {
-		return (
-			<article>
-				<h1>Helmet page</h1>
-			</article>
-		)
-	}
+function HelmetPage() {
+	return (
+		<article>
+			<h1>Helmet page</h1>
+		</article>
+	)
 }
 
-export default HelmetPage
+export default withHeader(HelmetPage)

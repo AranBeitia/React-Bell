@@ -1,14 +1,12 @@
 import React from 'react'
-import TheHeader from '../../components/TheHeader'
+
+import withHeader from '../../hoc/withHeader'
 import TheMenu from '../../components/TheMenu'
 
 function HomePage({ isLoading, categories }) {
 	return (
-		<article>
-			<TheHeader />
-			<TheMenu categories={categories} isLoading={isLoading} />
-		</article>
+		<TheMenu categories={categories} isLoading={isLoading} />
 	)
 }
 
-export default HomePage
+export default withHeader(HomePage)
