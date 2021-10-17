@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-10-17T09:01:17.392Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" etag="S0CHZA8c2JkR6MtZ2Imb" version="15.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-17T09:38:25.587Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" etag="hVYivJFi2zprWqpE2Z49" version="15.5.1" type="github">
   <diagram id="pVPDxXuSj9QUZrEX7Hru" name="Page-1">
-    <mxGraphModel dx="946" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="946" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -225,8 +225,8 @@
         <mxCell id="bGzOFAMTVn4kiEveAO2B-8" value="&lt;ul&gt;&lt;li&gt;Login link&lt;/li&gt;&lt;li&gt;Avatar anonimo&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
           <mxGeometry x="510" y="10" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bGzOFAMTVn4kiEveAO2B-9" value="&lt;ul&gt;&lt;li&gt;Logout link&lt;/li&gt;&lt;li&gt;Avatar user&lt;/li&gt;&lt;li&gt;User name&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="520" y="74" width="140" height="66" as="geometry" />
+        <mxCell id="bGzOFAMTVn4kiEveAO2B-9" value="&lt;ul&gt;&lt;li&gt;Avatar user: link to profile page&lt;/li&gt;&lt;li&gt;User name&lt;/li&gt;&lt;li&gt;Logout: inside profile page&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="520" y="80" width="220" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
