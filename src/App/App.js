@@ -9,6 +9,7 @@ import AuthContext from '../context/AuthContext'
 import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
 import Login from '../pages/LoginPage'
+import Profile from '../pages/ProfilePage'
 
 function App() {
 	const [categories, setCategories] = useState([])
@@ -39,11 +40,11 @@ function App() {
 		writeLocalStorage('helmets', JSON.stringify({ categories }))
 	}, [categories])
 
-	const login = () => {
+	const login = (values) => {
 		setUser({
-			name: 'Hello',
-			lastName: 'Kitty',
-			email: 'hk@hk.com',
+			name: values.name,
+			lastName: values.lastName,
+			email: values.email,
 		})
 		setIsAuth(true)
 	}
@@ -85,6 +86,13 @@ function App() {
 						path={routes.LOGIN}
 						exact
 						render={(routeProps) => <Login {...routeProps} />}
+					/>
+				</Switch>
+				<Switch>
+					<Route
+						path={routes.PROFILE}
+						exact
+						render={(routeProps) => <Profile {...routeProps} />}
 					/>
 				</Switch>
 			</ProductContext.Provider>
