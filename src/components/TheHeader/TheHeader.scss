@@ -1,6 +1,7 @@
 .header {
-	&__brand {
+	&__nav {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 	}
 

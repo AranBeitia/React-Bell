@@ -1,17 +1,26 @@
 import React from 'react'
 
 import TheHeader from '../components/TheHeader'
+// import Hero from '../components/Hero'
 
 function withHeader(WrappedComponent) {
-  function WrapperComponent({...props}) {
-    return(
-      <>
-        <TheHeader/>
-        <WrappedComponent {...props}/>
-      </>
-    )
-  }
-  return WrapperComponent
+	// const getHero = () => {
+	// 	if (!Hero) {
+	// 		return null
+	// 	}
+	// 	return <Hero />
+	// }
+
+	function WrapperComponent({ ...props }) {
+		return (
+			<>
+				<TheHeader />
+				{/* {getHero} */}
+				<WrappedComponent {...props} />
+			</>
+		)
+	}
+	return WrapperComponent
 }
 
 export default withHeader

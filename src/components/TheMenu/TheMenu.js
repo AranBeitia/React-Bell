@@ -1,10 +1,11 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import ProductContext from '../../context/ProductContext'
 import './TheMenu.scss'
 
 import Panel from './Panel'
 
-function TheMenu({ isLoading, categories }) {
+function TheMenu() {
+	const { isLoading, categories } = useContext(ProductContext)
 	return (
 		<nav>
 			{isLoading && <p>Loading...</p>}
