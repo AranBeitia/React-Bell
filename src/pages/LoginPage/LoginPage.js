@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import * as routes from '../../constants/routes'
 import withHeader from '../../hoc/withHeader'
 import AuthContext from '../../context/AuthContext'
+import LoginStyle from './LoginPage.style'
 
 function LoginPage() {
 	const { login, isAuthenticated } = useContext(AuthContext)
@@ -25,7 +26,7 @@ function LoginPage() {
 	}
 
 	return (
-		<section>
+		<LoginStyle>
 			<h1>login page</h1>
 			<form
 				action=""
@@ -39,7 +40,7 @@ function LoginPage() {
 				<input type="text" name="email" onChange={handleChange} />
 				<button type="submit">Submit</button>
 			</form>
-		</section>
+		</LoginStyle>
 	)
 }
 export default withHeader(LoginPage)

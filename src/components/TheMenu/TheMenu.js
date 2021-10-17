@@ -5,10 +5,9 @@ import './TheMenu.scss'
 import Panel from './Panel'
 
 function TheMenu() {
-	const { isLoading, categories } = useContext(ProductContext)
+	const { categories } = useContext(ProductContext)
 	return (
 		<nav>
-			{isLoading && <p>Loading...</p>}
 			<ul className="panels">
 				{categories.map((item) => (
 					<Panel
