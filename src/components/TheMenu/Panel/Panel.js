@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom'
 import './Panel.scss'
 
 function Panel({ title, id, path }) {
-	console.log(path)
 	// const [isOpen, SetIsOpen] = useState(false)
 
 	// openPanel = () => {

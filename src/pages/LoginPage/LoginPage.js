@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import * as routes from '../../constants/routes'
 import withHeader from '../../hoc/withHeader'
 import AuthContext from '../../context/AuthContext'
 
@@ -12,7 +13,7 @@ function LoginPage() {
 	})
 
 	if (isAuthenticated) {
-		return <Redirect to="/" />
+		return <Redirect to={routes.HOME} />
 	}
 	const handleChange = (e) => {
 		setFormValues((prevState) => {
