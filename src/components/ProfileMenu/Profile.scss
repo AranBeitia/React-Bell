@@ -1,0 +1,40 @@
+$bg: #345b83;
+$bg-accent: #484a4d;
+$text-color: #dadce1;
+$nav-size: 60px;
+$border: 1px solid #474a4d;
+$border-radius: 8px;
+$speed: 500ms;
+
+.profile {
+	position: relative;
+
+	&__nav {
+		position: absolute;
+		top: 30px;
+		width: 300px;
+		transform: translateX(-80%);
+		background-color: $bg;
+		border: $border;
+		border-radius: $border-radius;
+		padding: 1rem;
+		overflow: hidden;
+	}
+
+	&__item {
+		height: 50px;
+		display: flex;
+		align-items: center;
+		border-radius: $border-radius;
+		transition: background $speed;
+		padding: 0.5rem;
+
+		&:hover {
+			background-color: pink;
+		}
+	}
+	a {
+		color: $text-color;
+		text-decoration: none;
+	}
+}

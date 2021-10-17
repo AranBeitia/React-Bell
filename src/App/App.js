@@ -9,7 +9,6 @@ import AuthContext from '../context/AuthContext'
 import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
 import Login from '../pages/LoginPage'
-import Profile from '../pages/ProfilePage'
 
 function App() {
 	const [categories, setCategories] = useState([])
@@ -86,13 +85,6 @@ function App() {
 						path={routes.LOGIN}
 						exact
 						render={(routeProps) => <Login {...routeProps} />}
-					/>
-				</Switch>
-				<Switch>
-					<Route
-						path={routes.PROFILE}
-						exact
-						render={(routeProps) => <Profile {...routeProps} />}
 					/>
 				</Switch>
 			</ProductContext.Provider>

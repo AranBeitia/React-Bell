@@ -1,7 +1,6 @@
 export const HOME = '/'
 export const HELMETS = '/helmets'
 export const LOGIN = '/login'
-export const PROFILE = '/profile'
 
 export const SNOW = '/snow'
 export const SIDE = '/side2side'
