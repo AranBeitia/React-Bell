@@ -5,6 +5,9 @@ import { Switch, Route } from 'react-router-dom'
 import * as routes from '../constants/routes'
 import ProductContext from '../context/ProductContext'
 import AuthContext from '../context/AuthContext'
+import { darkTheme, lightTheme } from '../components/Theme/Theme'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyles } from '../components/Theme/Global.styles'
 
 import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
@@ -63,6 +66,8 @@ function App() {
 		theme === 'dark' ? setTheme('light') : setTheme('dark')
 	}
 
+	const themeMode = theme === 'light' ? lightTheme : darkTheme
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -73,32 +78,35 @@ function App() {
 				theme: getTheme,
 			}}
 		>
-			<ProductContext.Provider
-				value={{
-					categories: categories,
-					isLoading: isLoading,
-				}}
-			>
-				<Switch>
-					<Route
-						path={routes.HOME}
-						exact
-						render={(routeProps) => <Home {...routeProps} />}
-					/>
-					<Route
-						path={routes.HELMETS}
-						exact
-						render={(routeProps) => <Helmets {...routeProps} />}
-					/>
-				</Switch>
-				<Switch>
-					<Route
-						path={routes.LOGIN}
-						exact
-						render={(routeProps) => <Login {...routeProps} />}
-					/>
-				</Switch>
-			</ProductContext.Provider>
+			<ThemeProvider theme={themeMode}>
+				<GlobalStyles />
+				<ProductContext.Provider
+					value={{
+						categories: categories,
+						isLoading: isLoading,
+					}}
+				>
+					<Switch>
+						<Route
+							path={routes.HOME}
+							exact
+							render={(routeProps) => <Home {...routeProps} />}
+						/>
+						<Route
+							path={routes.HELMETS}
+							exact
+							render={(routeProps) => <Helmets {...routeProps} />}
+						/>
+					</Switch>
+					<Switch>
+						<Route
+							path={routes.LOGIN}
+							exact
+							render={(routeProps) => <Login {...routeProps} />}
+						/>
+					</Switch>
+				</ProductContext.Provider>
+			</ThemeProvider>
 		</AuthContext.Provider>
 	)
 }
