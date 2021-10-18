@@ -15,16 +15,15 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [user, setUser] = useState({})
 	const [isAuth, setIsAuth] = useState(false)
+	const [theme, setTheme] = useState('dark')
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')
-		setIsLoading(true)
-
 		if (!lastState) {
 			getProducts()
 				.then((data) => {
 					setCategories(data)
-					setIsLoading(false)
+					setIsLoading(true)
 				})
 				.catch(() => {
 					setIsLoading(false)
@@ -33,11 +32,18 @@ function App() {
 		}
 
 		setCategories(lastState.categories)
+		setUser(lastState.user)
+		setIsAuth(lastState.isAuth)
+		setIsLoading(lastState.isLoading)
+		setTheme(lastState.theme)
 	}, [])
 
 	useEffect(() => {
-		writeLocalStorage('helmets', JSON.stringify({ categories }))
-	}, [categories])
+		writeLocalStorage(
+			'helmets',
+			JSON.stringify({ categories, user, isLoading, isAuth, theme })
+		)
+	}, [categories, user, isLoading, isAuth, theme])
 
 	const login = (values) => {
 		setUser({
@@ -53,6 +59,10 @@ function App() {
 		setIsAuth(false)
 	}
 
+	const getTheme = () => {
+		theme === 'dark' ? setTheme('light') : setTheme('dark')
+	}
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -60,6 +70,7 @@ function App() {
 				isAuthenticated: isAuth,
 				login: login,
 				logout: logout,
+				theme: getTheme,
 			}}
 		>
 			<ProductContext.Provider

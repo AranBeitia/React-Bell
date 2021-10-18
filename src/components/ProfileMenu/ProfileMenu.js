@@ -4,16 +4,20 @@ import ButtonIcon from '../Button/ButtonIcon'
 import './Profile.scss'
 
 function ProfileMenu() {
-	const { logout } = useContext(AuthContext)
+	const { logout, theme } = useContext(AuthContext)
 
 	const handleLogout = () => {
 		logout()
 	}
 
+	const handleTheme = () => {
+		theme()
+	}
+
 	return (
 		<nav className="profile">
 			<ul className="profile__nav">
-				<li className="profile__item">
+				<li className="profile__item" onClick={handleTheme}>
 					<ButtonIcon />
 					<span>theme</span>
 				</li>
