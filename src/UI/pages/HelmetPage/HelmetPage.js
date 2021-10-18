@@ -1,5 +1,5 @@
 import React from 'react'
-import withHeader from '../../hoc/withHeader'
+import withHeader from '../../../hoc/withHeader'
 
 function HelmetPage() {
 	return (
