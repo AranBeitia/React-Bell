@@ -16,8 +16,8 @@ function Panel({ title, id, path }) {
 			onClick={openPanel}
 		>
 			<p>Helmets</p>
-			<p>{title}</p>
 			<NavLink to={path}>{title}</NavLink>
+			<p>{title}</p>
 		</li>
 	)
 }
