@@ -6,6 +6,7 @@ const categories = [
 		id: 1,
 		title: 'Snow Movile',
 		url: 'snow-movile',
+		products: [],
 	},
 	{
 		id: 2,
@@ -40,6 +41,7 @@ const categories = [
 		id: 5,
 		title: 'street bike',
 		url: 'street-bike',
+		products: [],
 	},
 ]
 

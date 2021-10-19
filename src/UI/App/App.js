@@ -18,7 +18,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [user, setUser] = useState({})
 	const [isAuth, setIsAuth] = useState(false)
-	const [theme, setTheme] = useState('dark')
+	const [theme, setTheme] = useState('')
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')

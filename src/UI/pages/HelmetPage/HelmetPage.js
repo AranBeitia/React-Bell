@@ -4,25 +4,18 @@ import withHeader from '../../../hoc/withHeader'
 import './HelmetPage.scss'
 
 function HelmetPage(props) {
-	const category = props.match.params.category
 	const { categories } = useContext(ProductContext)
+	const category = props.match.params.category
+	const catSelected = categories.find((item) => item.url === category)
+
 	return (
 		<article>
-			{categories.map((item) => {
-				if (item.url === category) {
-					return (
-						<div key={item.id}>
-							<header className={`helmet__hero bg-img-${item.id}`}>
-								<p>{item.title}</p>
-							</header>
-							<main>
-								<h1>gallery</h1>
-							</main>
-						</div>
-					)
-				}
-				return
-			})}
+			<header className={`helmet__hero bg-img-${catSelected.id}`}>
+				<p>{catSelected.title}</p>
+			</header>
+			<main>
+				<h1>gallery</h1>
+			</main>
 		</article>
 	)
 }
