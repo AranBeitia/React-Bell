@@ -11,9 +11,9 @@ function HelmetPage(props) {
 	return (
 		<article>
 			<header className={`helmet__hero bg-img-${catSelected.id}`}>
-				<p>{catSelected.title}</p>
+				<p className="container">{catSelected.title}</p>
 			</header>
-			<main>
+			<main className="container">
 				<h1>gallery</h1>
 			</main>
 		</article>

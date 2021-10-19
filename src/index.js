@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './UI/assets/scss/main.scss'
 import App from './UI/App'
 import reportWebVitals from './reportWebVitals'
