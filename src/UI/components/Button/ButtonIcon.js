@@ -11,7 +11,11 @@ const ButtonIcon = styled.button`
 	padding: 5px;
 	margin: 2px;
 	transition: filter 300ms;
+<<<<<<< HEAD:src/components/Button/ButtonIcon.js
 	background-color: ${({ theme }) => theme.text};
+=======
+	background-color: #e0cac1;
+>>>>>>> main:src/UI/components/Button/ButtonIcon.js
 	cursor: pointer;
 	transition: filter 300ms;
 

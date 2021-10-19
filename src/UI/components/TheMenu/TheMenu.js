@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import ProductContext from '../../context/ProductContext'
+import ProductContext from '../../../context/ProductContext'
 import './TheMenu.scss'
 
 import Panel from './Panel'

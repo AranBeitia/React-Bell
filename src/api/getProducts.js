@@ -1,10 +1,9 @@
-import categories from '../utils/data'
+import data from '../utils/data'
 
 export function getProducts(fail = false) {
 	return new Promise((result, rejection) => {
 		setTimeout(() => {
-			console.log('inside fetch')
-			result(categories)
+			result(data)
 		}, 1000)
 	})
 }

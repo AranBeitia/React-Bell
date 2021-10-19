@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import * as routes from '../../constants/routes'
-import withHeader from '../../hoc/withHeader'
-import AuthContext from '../../context/AuthContext'
+import * as routes from '../../../constants/routes'
+import withHeader from '../../../hoc/withHeader'
+import AuthContext from '../../../context/AuthContext'
 import LoginStyle from './LoginPage.style'
 
 function LoginPage() {

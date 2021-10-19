@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TheHeader from '../components/TheHeader'
+import TheHeader from '../UI/components/TheHeader'
 // import Hero from '../components/Hero'
 
 function withHeader(WrappedComponent) {
