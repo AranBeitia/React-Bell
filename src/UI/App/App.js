@@ -19,13 +19,15 @@ function App() {
 	const [user, setUser] = useState({})
 	const [isAuth, setIsAuth] = useState(false)
 	const [theme, setTheme] = useState('dark')
+	const [products, setProducts] = useState([])
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')
 		if (!lastState) {
 			getProducts()
 				.then((data) => {
-					setCategories(data)
+					setCategories(data.categories)
+					setProducts(data.products)
 					setIsLoading(true)
 				})
 				.catch(() => {
@@ -35,6 +37,7 @@ function App() {
 		}
 
 		setCategories(lastState.categories)
+		setProducts(lastState.products)
 		setUser(lastState.user)
 		setIsAuth(lastState.isAuth)
 		setIsLoading(lastState.isLoading)
@@ -44,9 +47,9 @@ function App() {
 	useEffect(() => {
 		writeLocalStorage(
 			'helmets',
-			JSON.stringify({ categories, user, isLoading, isAuth, theme })
+			JSON.stringify({ categories, products, user, isLoading, isAuth, theme })
 		)
-	}, [categories, user, isLoading, isAuth, theme])
+	}, [categories, products, user, isLoading, isAuth, theme])
 
 	const login = (values) => {
 		setUser({
@@ -83,6 +86,7 @@ function App() {
 				<ProductContext.Provider
 					value={{
 						categories: categories,
+						products: products,
 						isLoading: isLoading,
 					}}
 				>

@@ -13,7 +13,7 @@ function Panel({ title, id, path }) {
 
 	return (
 		<li
-			className={`panel panel--img-${id} ${isOpen ? '--open' : ''}`}
+			className={`panel bg-img-${id} ${isOpen ? '--open' : ''}`}
 			onClick={openPanel}
 		>
 			<p>Helmets</p>

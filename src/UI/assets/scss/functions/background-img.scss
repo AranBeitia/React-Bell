@@ -1,0 +1,5 @@
+@for $i from 1 through 5 {
+	.bg-img-#{$i} {
+		background-image: url('../../img/bell-bg0#{$i}.jpg');
+	}
+}

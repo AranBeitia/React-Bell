@@ -1,22 +1,23 @@
 import React, { useContext } from 'react'
 import ProductContext from '../../../context/ProductContext'
 import withHeader from '../../../hoc/withHeader'
+import './HelmetPage.scss'
 
 function HelmetPage(props) {
 	const category = props.match.params.category
-	const { categories } = useContext(ProductContext)
-
+	const { categories, products } = useContext(ProductContext)
+	console.log(products)
 	return (
 		<article>
-			<h1>Helmet page:</h1>
 			{categories.map((item) => {
 				if (item.url === category) {
 					return (
-						<p key={item.id}>
-							<span>{item.title} - </span>
-							<span>{item.url} - </span>
-							<span>{item.id}</span>
-						</p>
+						<>
+							<header className={`helmet__hero bg-img-${item.id}`}>
+								<p>{item.title}</p>
+							</header>
+							<main>gallery</main>
+						</>
 					)
 				}
 				return
