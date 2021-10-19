@@ -79,11 +79,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   console.log(state.categories);
   const { categories, isLoading, user, isAuth, theme } = state;
-  // const [categories, setCategories] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [user, setUser] = useState({});
-  // const [isAuth, setIsAuth] = useState(false);
-  // const [theme, setTheme] = useState("");
 
   useEffect(() => {
     const lastState = readLocalStorage("helmets");
@@ -100,11 +95,7 @@ function App() {
 
     dispatch({ type: actionTypes.CATEGORIES, payload: lastState.categories });
     dispatch({ type: actionTypes.USER, payload: lastState.user });
-    //setUser(lastState.user);
-    //setIsAuth(lastState.isAuth);
     dispatch({ type: actionTypes.AUTH, payload: lastState.isAuth });
-    //setIsLoading(lastState.isLoading);
-    //setTheme(lastState.theme);
   }, []);
 
   useEffect(() => {
@@ -127,12 +118,10 @@ function App() {
   };
 
   const logout = () => {
-    //setUser({});
     dispatch({
       type: actionTypes.USER,
       payload: {},
     });
-    //setIsAuth(false);
     dispatch({ type: actionTypes.AUTH, payload: false });
   };
 
