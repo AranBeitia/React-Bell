@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import * as routes from '../../../../constants/routes'
 // import PanelStyled from './Panel.style'
 import './Panel.scss'
 
@@ -16,10 +17,11 @@ function Panel({ title, id, path }) {
 			onClick={openPanel}
 		>
 			<p>Helmets</p>
-			<NavLink to={path}>{title}</NavLink>
+			<NavLink to={`${routes.HELMETS}/${path}`}>{title}</NavLink>
 			<p>{title}</p>
 		</li>
 	)
 }
 
 export default Panel
+//
