@@ -11,7 +11,7 @@ const ButtonIcon = styled.button`
 	padding: 5px;
 	margin: 2px;
 	transition: filter 300ms;
-	background-color: pink;
+	background-color: #e0cac1;
 	cursor: pointer;
 	transition: filter 300ms;
 

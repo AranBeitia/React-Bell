@@ -12,7 +12,7 @@ function TheHeader(props) {
 	const { user, isAuthenticated } = useContext(AuthContext)
 	const [open, setOpen] = useState(false)
 	return (
-		<header className="header">
+		<header className="header container">
 			<nav className="header__nav">
 				<NavLink to={routes.HOME} className="header__brand">
 					<img src={logo} alt="Bell logo" className="header__logo" />
