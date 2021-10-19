@@ -1,7 +1,7 @@
 import bullitCarbon from '../UI/assets/img/helmet/bullit-carbon.jpg'
 import dirt from '../UI/assets/img/helmet/dirt.jpg'
 
-export const categories = [
+const categories = [
 	{
 		id: 1,
 		title: 'Snow Movile',
@@ -16,11 +16,25 @@ export const categories = [
 		id: 3,
 		title: 'Moto III',
 		url: 'moto3',
+		products: [
+			{
+				id: 1,
+				title: 'bullit carbon',
+				img: bullitCarbon,
+			},
+		],
 	},
 	{
 		id: 4,
 		title: 'Dirt bike',
 		url: 'dirt-bike',
+		products: [
+			{
+				id: 2,
+				title: 'dirt',
+				img: dirt,
+			},
+		],
 	},
 	{
 		id: 5,
@@ -29,19 +43,4 @@ export const categories = [
 	},
 ]
 
-export const products = [
-	{
-		id: 1,
-		title: 'bullit carbon',
-		category: 'Moto III',
-		img: bullitCarbon,
-	},
-	{
-		id: 2,
-		title: 'dirt',
-		category: 'Dirt bike',
-		img: dirt,
-	},
-]
-
-export default { categories: categories, products: products }
+export default categories

@@ -1,4 +1,4 @@
-import * as data from '../utils/data'
+import data from '../utils/data'
 
 export function getProducts(fail = false) {
 	return new Promise((result, rejection) => {

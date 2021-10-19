@@ -5,19 +5,20 @@ import './HelmetPage.scss'
 
 function HelmetPage(props) {
 	const category = props.match.params.category
-	const { categories, products } = useContext(ProductContext)
-	console.log(products)
+	const { categories } = useContext(ProductContext)
 	return (
 		<article>
 			{categories.map((item) => {
 				if (item.url === category) {
 					return (
-						<>
+						<div key={item.id}>
 							<header className={`helmet__hero bg-img-${item.id}`}>
 								<p>{item.title}</p>
 							</header>
-							<main>gallery</main>
-						</>
+							<main>
+								<h1>gallery</h1>
+							</main>
+						</div>
 					)
 				}
 				return
