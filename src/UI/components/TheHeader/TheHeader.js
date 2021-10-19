@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import * as routes from '../../../constants/routes'
 import AuthContext from '../../../context/AuthContext'
 import logo from '../../assets/img/logo.svg'
-import ButtonIcon from '../Button/ButtonIcon'
+import { Button, ButtonIcon } from '../Button/Button.style'
 import './TheHeader.scss'
 
 import ProfileMenu from '../ProfileMenu/ProfileMenu'
@@ -24,7 +24,9 @@ function TheHeader(props) {
 						{open && <ProfileMenu />}
 					</div>
 				) : (
-					<NavLink to={routes.LOGIN}>Login / Register</NavLink>
+					<Button>
+						<NavLink to={routes.LOGIN}>Login / Register</NavLink>
+					</Button>
 				)}
 			</nav>
 		</header>

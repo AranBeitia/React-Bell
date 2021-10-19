@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import AuthContext from '../../../context/AuthContext'
-import ButtonIcon from '../Button/ButtonIcon'
-import './Profile.scss'
+import { ButtonIcon } from '../Button/Button.style'
+import ProfileStyle from './Profile.style'
 
 function ProfileMenu() {
 	const { logout, theme } = useContext(AuthContext)
@@ -15,7 +15,7 @@ function ProfileMenu() {
 	}
 
 	return (
-		<nav className="profile">
+		<ProfileStyle>
 			<ul className="profile__nav">
 				<li className="profile__item" onClick={handleTheme}>
 					<ButtonIcon />
@@ -28,7 +28,7 @@ function ProfileMenu() {
 					</span>
 				</li>
 			</ul>
-		</nav>
+		</ProfileStyle>
 	)
 }
 
