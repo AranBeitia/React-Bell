@@ -29,6 +29,9 @@ const ProfileStyle = styled.nav`
 				background-color: #7a858c;
 			}
 		}
+		&__text {
+			margin-left: 0.5rem;
+		}
 	}
 `
 

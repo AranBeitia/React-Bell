@@ -15,4 +15,12 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+	&__icon {
+		margin-left: 0.5rem;
+
+		&::before {
+			font-size: 1.9rem;
+		}
+	}
 }

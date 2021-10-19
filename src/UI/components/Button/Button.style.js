@@ -4,14 +4,20 @@ export const Button = styled.button`
 	display: block;
 	max-width: 150px;
 	width: 100%;
-	font-family: 'Amatic SC';
-	font-size: 1.7rem;
+	padding: 0.5rem;
+	font-size: 1rem;
 	font-weight: 700;
 	background-color: ${({ theme }) => theme.text};
 	color: ${({ theme }) => theme.bodyBg};
 	border-radius: 6px;
 	border: 0;
+	transition: all 300ms;
 	cursor: pointer;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.bodyBg};
+		color: ${({ theme }) => theme.text};
+	}
 
 	a {
 		color: ${({ theme }) => theme.bodyBg};
@@ -28,11 +34,9 @@ export const ButtonIcon = styled.button`
 	border-radius: 50%;
 	border: 0;
 	padding: 5px;
-	margin: 2px;
 	transition: filter 300ms;
 	background-color: #e0cac1;
 	cursor: pointer;
-	transition: filter 300ms;
 
 	&:hover {
 		filter: brightness(1.2);

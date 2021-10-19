@@ -20,7 +20,10 @@ function TheHeader(props) {
 				{isAuthenticated ? (
 					<div className="header__profile">
 						<span>Hello {user.name}</span>
-						<ButtonIcon onClick={() => setOpen(!open)} />
+						<ButtonIcon
+							className="icon-avatar header__icon"
+							onClick={() => setOpen(!open)}
+						/>
 						{open && <ProfileMenu />}
 					</div>
 				) : (

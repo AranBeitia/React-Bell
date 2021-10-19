@@ -18,14 +18,12 @@ function ProfileMenu() {
 		<ProfileStyle>
 			<ul className="profile__nav">
 				<li className="profile__item" onClick={handleTheme}>
-					<ButtonIcon />
-					<span>theme</span>
+					<ButtonIcon className="icon-cogs" />
+					<span className="profile__text">theme</span>
 				</li>
 				<li className="profile__item" onClick={handleLogout}>
-					<ButtonIcon />
-					<span href="#" className="icon-button">
-						logout
-					</span>
+					<ButtonIcon className="icon-switch" />
+					<span className="profile__text">logout</span>
 				</li>
 			</ul>
 		</ProfileStyle>

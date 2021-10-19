@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import * as routes from '../../../../constants/routes'
-// import PanelStyled from './Panel.style'
 import './Panel.scss'
 
 function Panel({ title, id, path }) {
@@ -24,4 +23,3 @@ function Panel({ title, id, path }) {
 }
 
 export default Panel
-//
