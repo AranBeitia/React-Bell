@@ -9,9 +9,7 @@ function HelmetPage(props) {
 	const { categories, cartItems, handleAddToCart } = useProduct()
 	const category = props.match.params.category
 	const catSelected = categories.find((item) => item.url === category)
-	// const handleAddToCart = (productId) => {
-	// 	console.log(productId)
-	// }
+
 	// const handleAddToCart = (productId) => {
 	// 	const foundProduct = catSelected.products.find(
 	// 		(product) => product.id === productId
@@ -26,8 +24,7 @@ function HelmetPage(props) {
 				<p className="container">{catSelected.title}</p>
 			</header>
 
-			<main className="container">
-				<h1>gallery</h1>
+			<main className="container gallery">
 				{catSelected.products.map((i) => (
 					<Card key={i.id} bg="dark" style={{ width: '18rem' }}>
 						<p>{i.title}</p>
@@ -39,13 +36,14 @@ function HelmetPage(props) {
 
 			<aside>
 				<div className="shopping-cart">
+						<p>buy</p>
 					<ul>
-						{/* {cartItems.map((item) => (
+					{/*	{cartItems.map((item) => (
 							<li key={item.id}>
 								<p>{item.title}</p>
 								<img src={item.img} alt={item.title} />
 							</li>
-						))} */}
+					))}*/}
 					</ul>
 				</div>
 			</aside>

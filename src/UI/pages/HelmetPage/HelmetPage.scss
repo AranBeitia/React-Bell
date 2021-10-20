@@ -5,6 +5,18 @@
 	}
 }
 
+.gallery {
+	display: flex;
+}
 .shopping-cart {
-	color: red;
+	position: absolute;
+	top: 70px;
+	right: 0;
+	width: 300px;
+	//transform: translateX(-100%);
+	background-color: red;
+	border: 1px solid #161718;
+	border-radius: 4px;
+	padding: 1rem;
+	overflow: hidden;
 }

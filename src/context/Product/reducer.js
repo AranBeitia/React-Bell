@@ -81,6 +81,9 @@ function ProductProvider({ children }) {
 	const value = {
 		...state,
 		handleAddToCart: (productId) => {
+			dispatch({type: actionTypes.CART_ITEMS, payload:{
+				id:productId
+			}})
 			console.log(productId)
 		},
 	}
