@@ -6,7 +6,7 @@ import { darkTheme, lightTheme } from "../../components/Theme/Theme";
 const AuthContext = createContext();
 
 export const initialState = {
-  isAuthenticated: false,
+  isAuth: false,
   user: {},
   theme: "dark",
 };
@@ -42,14 +42,15 @@ function AuthProvider({ children }) {
   const { user, isAuth, theme } = state;
 
   useEffect(() => {
-    const lastState = readLocalStorage("helmets");
-
-    dispatch({ type: actionTypes.USER, payload: lastState.user });
-    dispatch({ type: actionTypes.AUTH, payload: lastState.isAuth });
+    const lastState = readLocalStorage("user");
+    if (lastState) {
+      dispatch({ type: actionTypes.USER, payload: lastState.user });
+      dispatch({ type: actionTypes.AUTH, payload: lastState.isAuth });
+    }
   }, []);
 
   useEffect(() => {
-    writeLocalStorage("helmets", JSON.stringify({ user, isAuth, theme }));
+    writeLocalStorage("user", JSON.stringify({ user, isAuth, theme }));
   }, [user, isAuth, theme]);
 
   const value = {
