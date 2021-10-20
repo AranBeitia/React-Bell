@@ -6,8 +6,9 @@ import { darkTheme, lightTheme } from '../../UI/components/Theme/Theme'
 const AuthContext = createContext()
 
 export const initialState = {
-	isAuth: false,
 	user: {},
+	isAuth: false,
+	isLoading: false,
 	theme: 'dark',
 }
 
@@ -25,7 +26,20 @@ const reducer = (state, action) => {
 				isAuth: action.payload,
 			}
 		}
-
+		case actionTypes.LOGIN: {
+			return {
+				...state,
+				isLoading: false,
+				isAuth: true,
+			}
+		}
+		case actionTypes.LOGOUT: {
+			return {
+				...state,
+				user: {},
+				isAuth: false,
+			}
+		}
 		case actionTypes.THEME: {
 			return {
 				...state,
@@ -55,23 +69,35 @@ function AuthProvider({ children }) {
 
 	const value = {
 		...state,
-		login: (values) => {
-			dispatch({
-				type: actionTypes.USER,
-				payload: {
-					name: values.name,
-					lastName: values.lastName,
-					email: values.email,
-				},
-			})
-			dispatch({ type: actionTypes.AUTH, payload: true })
+		login: () => {
+			dispatch({ type: actionTypes.LOGIN })
 		},
 		logout: () => {
+			dispatch({ type: actionTypes.LOGOUT })
+		},
+		// login: (values) => {
+		// 	dispatch({
+		// 		type: actionTypes.USER,
+		// 		payload: {
+		// 			name: values.name,
+		// 			lastName: values.lastName,
+		// 			email: values.email,
+		// 		},
+		// 	})
+		// 	dispatch({ type: actionTypes.AUTH, payload: true })
+		// },
+		// logout: () => {
+		// 	dispatch({
+		// 		type: actionTypes.USER,
+		// 		payload: {},
+		// 	})
+		// 	dispatch({ type: actionTypes.AUTH, payload: false })
+		// },
+		handleChange: (e) => {
 			dispatch({
 				type: actionTypes.USER,
-				payload: {},
+				payload: { [e.target.name]: e.target.value },
 			})
-			dispatch({ type: actionTypes.AUTH, payload: false })
 		},
 		getTheme: () => {
 			theme === 'dark'
@@ -79,12 +105,6 @@ function AuthProvider({ children }) {
 				: dispatch({ type: actionTypes.THEME, payload: 'dark' })
 		},
 		themeMode: theme === 'light' ? lightTheme : darkTheme,
-		handleChange: (e) => {
-			dispatch({
-				type: actionTypes.USER,
-				payload: { [e.target.name]: e.target.value },
-			})
-		},
 	}
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
