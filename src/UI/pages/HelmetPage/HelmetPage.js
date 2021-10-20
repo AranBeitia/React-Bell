@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
-import ProductContext from '../../../context/ProductContext'
+import React from 'react'
+import { useProduct } from '../../../context/Product/reducer'
 import withHeader from '../../../hoc/withHeader'
 import './HelmetPage.scss'
 import Card from 'react-bootstrap/Card'
 import { Button } from '../../components/Button/Button.style'
 
 function HelmetPage(props) {
-	const { categories, cartItems } = useContext(ProductContext)
+	const { categories, cartItems, handleAddToCart } = useProduct()
 	const category = props.match.params.category
 	const catSelected = categories.find((item) => item.url === category)
 
-	const handleAddToCart = (productId) => {
-		console.log(productId)
-	}
+	// const handleAddToCart = (productId) => {
+	// 	console.log(productId)
+	// }
 	// const handleAddToCart = (productId) => {
 	// 	const foundProduct = catSelected.products.find(
 	// 		(product) => product.id === productId

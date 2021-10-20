@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import AuthContext from '../../context/AuthContext'
-import ProductContext from '../../context/ProductContext'
+import { ProductProvider } from '../../context/Product/reducer'
 import { darkTheme, lightTheme } from '../components/Theme/Theme'
 import { GlobalStyles } from '../components/Theme/Global.styles'
 import { ThemeProvider } from 'styled-components'
@@ -153,13 +153,7 @@ function App() {
 		>
 			<ThemeProvider theme={themeMode}>
 				<GlobalStyles />
-				<ProductContext.Provider
-					value={{
-						categories: categories,
-						cartItems: cartItems,
-						isLoading: isLoading,
-					}}
-				>
+				<ProductProvider>
 					<Switch>
 						<Route
 							path={routes.HOME}
@@ -179,7 +173,7 @@ function App() {
 							render={(routeProps) => <Login {...routeProps} />}
 						/>
 					</Switch>
-				</ProductContext.Provider>
+				</ProductProvider>
 			</ThemeProvider>
 		</AuthContext.Provider>
 	)
