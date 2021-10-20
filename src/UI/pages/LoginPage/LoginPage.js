@@ -9,14 +9,15 @@ import { useAuth } from "../../../context/Auth/reducer";
 
 import Card from "react-bootstrap/Card";
 function LoginPage() {
-  const { login, isAuthenticated, handleChange, user } = useAuth();
+  const { login, isAuth, handleChange, user } = useAuth();
+  console.log(user);
   // const [formValues, setFormValues] = useState({
   //   name: "",
   //   lastName: "",
   //   email: "",
   // });
 
-  if (isAuthenticated) {
+  if (isAuth) {
     return <Redirect to={routes.HOME} />;
   }
   // const handleChange = (e) => {

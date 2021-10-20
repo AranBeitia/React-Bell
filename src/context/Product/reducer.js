@@ -13,10 +13,16 @@ export const initialState = {
 
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case actionTypes.FETCH_SUCCESS: {
+		case actionTypes.FETCH_REQUEST: {
 			return {
 				...state,
 				isLoading: true,
+			}
+		}
+		case actionTypes.FETCH_SUCCESS: {
+			return {
+				...state,
+				isLoading: false,
 				categories: [...action.payload],
 			}
 		}
@@ -49,7 +55,8 @@ function ProductProvider({ children }) {
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')
-		if (!lastState) {
+		if (!lastState && categories.length === 0) {
+			dispatch({ type: actionTypes.FETCH_REQUEST })
 			getProducts()
 				.then((data) => {
 					dispatch({ type: actionTypes.FETCH_SUCCESS, payload: data })

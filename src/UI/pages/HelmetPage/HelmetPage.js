@@ -9,7 +9,6 @@ function HelmetPage(props) {
 	const { categories, cartItems, handleAddToCart } = useProduct()
 	const category = props.match.params.category
 	const catSelected = categories.find((item) => item.url === category)
-
 	// const handleAddToCart = (productId) => {
 	// 	console.log(productId)
 	// }
@@ -26,6 +25,7 @@ function HelmetPage(props) {
 			<header className={`helmet__hero bg-img-${catSelected.id}`}>
 				<p className="container">{catSelected.title}</p>
 			</header>
+
 			<main className="container">
 				<h1>gallery</h1>
 				{catSelected.products.map((i) => (
@@ -36,6 +36,7 @@ function HelmetPage(props) {
 					</Card>
 				))}
 			</main>
+
 			<aside>
 				<div className="shopping-cart">
 					<ul>
