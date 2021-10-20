@@ -29,7 +29,7 @@ function HelmetPage(props) {
 			<main className="container">
 				<h1>gallery</h1>
 				{catSelected.products.map((i) => (
-					<Card key={i.id} bg="dark">
+					<Card key={i.id} bg="dark" style={{ width: '18rem' }}>
 						<p>{i.title}</p>
 						<img src={i.img} alt={i.title} />
 						<Button onClick={() => handleAddToCart(i.id)}>Add to cart</Button>
