@@ -13,8 +13,9 @@ import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
 import Login from '../pages/LoginPage'
 
-const initialState = {
+export const initialState = {
 	categories: [],
+	cartItems: [],
 	isAuth: false,
 	user: {},
 	isLoading: false,
@@ -25,12 +26,13 @@ const actionTypes = {
 	FETCH_SUCCESS: 'FETCH_SUCCESS',
 	FETCH_ERROR: 'FETCH_ERROR',
 	CATEGORIES: 'CATEGORIES',
+	CART_ITEMS: 'CART_ITEMS',
 	USER: 'USER',
 	AUTH: 'AUTH',
 	THEME: 'THEME',
 }
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
 	switch (action.type) {
 		case actionTypes.FETCH_SUCCESS: {
 			return {
@@ -49,6 +51,12 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				categories: [...action.payload],
+			}
+		}
+		case actionTypes.CART_ITEMS: {
+			return {
+				...state,
+				cartItems: [...action.payload],
 			}
 		}
 		case actionTypes.USER: {
@@ -77,8 +85,7 @@ const reducer = (state, action) => {
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	console.log(state.categories)
-	const { categories, isLoading, user, isAuth, theme } = state
+	const { categories, cartItems, isLoading, user, isAuth, theme } = state
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')
@@ -94,6 +101,7 @@ function App() {
 		}
 
 		dispatch({ type: actionTypes.CATEGORIES, payload: lastState.categories })
+		dispatch({ type: actionTypes.CART_ITEMS, payload: lastState.cartItems })
 		dispatch({ type: actionTypes.USER, payload: lastState.user })
 		dispatch({ type: actionTypes.AUTH, payload: lastState.isAuth })
 	}, [])
@@ -101,9 +109,9 @@ function App() {
 	useEffect(() => {
 		writeLocalStorage(
 			'helmets',
-			JSON.stringify({ categories, user, isLoading, isAuth, theme })
+			JSON.stringify({ categories, cartItems, user, isLoading, isAuth, theme })
 		)
-	}, [categories, user, isLoading, isAuth, theme])
+	}, [categories, cartItems, user, isLoading, isAuth, theme])
 
 	const login = (values) => {
 		dispatch({
@@ -148,6 +156,7 @@ function App() {
 				<ProductContext.Provider
 					value={{
 						categories: categories,
+						cartItems: cartItems,
 						isLoading: isLoading,
 					}}
 				>

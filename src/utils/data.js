@@ -12,6 +12,7 @@ const categories = [
 		id: 2,
 		title: 'Side X Side',
 		url: 'side-x-side',
+		products: [],
 	},
 	{
 		id: 3,
@@ -22,6 +23,11 @@ const categories = [
 				id: 1,
 				title: 'bullit carbon',
 				img: bullitCarbon,
+			},
+			{
+				id: 2,
+				title: 'dirt',
+				img: dirt,
 			},
 		],
 	},
