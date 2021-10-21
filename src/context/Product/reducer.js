@@ -10,7 +10,6 @@ export const initialState = {
 	cartItems: [],
 	isLoading: false,
 	isBuying: false,
-	categoryPath: '',
 }
 
 export const reducer = (state, action) => {
@@ -40,17 +39,23 @@ export const reducer = (state, action) => {
 				categories: [...action.payload],
 			}
 		}
-		case actionTypes.CART_ITEMS: {
-			return {
-				...state,
-				// cartItems: [...action.payload],
-				isBuying: true,
-			}
-		}
-		case actionTypes.REMOVE_ITEM: {
+		// case actionTypes.REMOVE_ITEM: {
+		// 	return {
+		// 		...state,
+		// 		isBuying: false,
+		// 	}
+		// }
+		case actionTypes.ADD_TO_CART: {
+			const currentCategory = state.categories.find(
+				(item) => item.url === action.payload.category
+			)
+			const currentProduct = currentCategory.products.find(
+				(item) => item.id === action.payload.productId
+			)
 			return {
 				...state,
 				isBuying: false,
+				cartItems: [...state.cartItems, currentProduct],
 			}
 		}
 		default:
@@ -63,7 +68,7 @@ function ProductProvider({ children }) {
 	const { categories, cartItems, isLoading } = state
 
 	useEffect(() => {
-		const lastState = readLocalStorage('helmets')
+		const lastState = readLocalStorage('products')
 
 		if (!lastState && categories.length === 0) {
 			dispatch({ type: actionTypes.FETCH_REQUEST })
@@ -94,15 +99,11 @@ function ProductProvider({ children }) {
 
 	const value = {
 		...state,
-		addToCart: (productId) => {
-			dispatch({ type: actionTypes.CART_ITEMS })
-			const updateCartItem = cartItems.map((item) => item)
-
-			console.log(updateCartItem)
-
-			// const productis = categoris.map(i =>)
-			// const newItem = productis.find((i) => i.id === productId)
-			// console.log(productis)
+		addToCart: (productId, category) => {
+			dispatch({
+				type: actionTypes.ADD_TO_CART,
+				payload: { productId, category },
+			})
 		},
 		removeCart: () => {
 			dispatch({ type: actionTypes.REMOVE_ITEM })
