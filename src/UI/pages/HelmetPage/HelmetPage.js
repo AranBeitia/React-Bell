@@ -5,52 +5,35 @@ import { useProduct } from '../../../context/Product/reducer'
 import withHeader from '../../../hoc/withHeader'
 import './HelmetPage.scss'
 import Card from 'react-bootstrap/Card'
+
+import ShoppingCart from '../../components/ShoppingCart'
 import { Button } from '../../components/Button/Button.style'
-// import CartItem from '../../components/CartItem'
 
 function HelmetPage() {
-	const { categories, cartItems, isBuying, addToCart } = useProduct()
+	const { categories, addToCart, isShopping } = useProduct()
 	const { category } = useParams()
 	const categorySelected = categories.find((item) => item.url === category)
 
-	const clearCart = () => {}
 	return (
 		<article>
 			<header className={`helmet__hero bg-img-${categorySelected.id}`}>
-				<p className="container">{categorySelected.title}</p>
+				<h1 className="container helmet__title">{categorySelected.title}</h1>
 			</header>
 
 			<main className="container gallery">
 				{categorySelected.products.map((item) => (
-					<Card key={item.id} bg="dark" style={{ width: '18rem' }}>
-						<p>{item.title}</p>
-						<img src={item.img} alt={item.title} />
-						<Button onClick={() => addToCart(item.id, category)}>
-							Add to cart
-						</Button>
+					<Card key={item.id} bg="dark">
+						<Card.Img variant="top" src={item.img} alt={item.title} />
+						<Card.Body>
+							<Card.Title>{item.title}</Card.Title>
+							<Button onClick={() => addToCart(item.id, category)}>
+								Add to cart
+							</Button>
+						</Card.Body>
 					</Card>
 				))}
 			</main>
-
-			<aside>
-				<div className="shopping-cart">
-					<p>Carrito</p>
-					<ul>
-						{cartItems.map((item, index) => (
-							<div key={index}>
-								<p>{item.name}</p>
-								<p>{item.price}</p>
-							</div>
-						))}
-						<button onClick={clearCart}>clear</button>
-						{isBuying && (
-							<>
-								<p>buying...</p>
-							</>
-						)}
-					</ul>
-				</div>
-			</aside>
+			{isShopping && <ShoppingCart />}
 		</article>
 	)
 }

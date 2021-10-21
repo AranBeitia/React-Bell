@@ -33,7 +33,6 @@ function LoginPage() {
 		},
 	})
 	const { values, handleChange, handleBlur, touched, errors } = formik
-	console.log(values, errors, touched)
 
 	if (isAuth) {
 		return <Redirect to={routes.HOME} />

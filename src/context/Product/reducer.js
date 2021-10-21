@@ -9,7 +9,7 @@ export const initialState = {
 	categories: [],
 	cartItems: [],
 	isLoading: false,
-	isBuying: false,
+	isShopping: false,
 }
 
 export const reducer = (state, action) => {
@@ -39,12 +39,6 @@ export const reducer = (state, action) => {
 				categories: [...action.payload],
 			}
 		}
-		// case actionTypes.REMOVE_ITEM: {
-		// 	return {
-		// 		...state,
-		// 		isBuying: false,
-		// 	}
-		// }
 		case actionTypes.ADD_TO_CART: {
 			const currentCategory = state.categories.find(
 				(item) => item.url === action.payload.category
@@ -54,8 +48,15 @@ export const reducer = (state, action) => {
 			)
 			return {
 				...state,
-				isBuying: false,
+				isShopping: true,
 				cartItems: [...state.cartItems, currentProduct],
+			}
+		}
+		case actionTypes.CLEAR: {
+			return {
+				...state,
+				cartItems: [],
+				isShopping: false,
 			}
 		}
 		default:
@@ -107,6 +108,9 @@ function ProductProvider({ children }) {
 		},
 		removeCart: () => {
 			dispatch({ type: actionTypes.REMOVE_ITEM })
+		},
+		clear: () => {
+			dispatch({ type: actionTypes.CLEAR })
 		},
 	}
 
