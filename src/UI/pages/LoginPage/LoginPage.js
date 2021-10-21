@@ -17,8 +17,23 @@ function LoginPage() {
       lastName: "",
       email: "",
     },
+    validate: (values) => {
+      let errors = {};
+
+      if (!values.name) {
+        errors.name = "Required";
+      }
+      if (!values.lastName) {
+        errors.lastName = "Required";
+      }
+      if (!values.email) {
+        errors.email = "Required";
+      }
+      return errors;
+    },
   });
-  const { values, handleChange } = formik;
+  const { values, handleChange, handleBlur, touched, errors } = formik;
+  console.log(values, errors, touched);
 
   if (isAuth) {
     return <Redirect to={routes.HOME} />;
@@ -42,8 +57,10 @@ function LoginPage() {
               aria-label="name"
               name="name"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.name}
             />
+            {touched.name && errors.name ? <div>{errors.name}</div> : null}
           </InputGroup>
           <InputGroup className="mb-3">
             <FormControl
@@ -51,8 +68,12 @@ function LoginPage() {
               aria-label="lastName"
               name="lastName"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.lastName}
             />
+            {touched.lastName && errors.lastName ? (
+              <div>{errors.lastName}</div>
+            ) : null}
           </InputGroup>
           <InputGroup className="mb-3">
             <FormControl
@@ -60,9 +81,11 @@ function LoginPage() {
               aria-label="email"
               name="email"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.email}
             />
           </InputGroup>
+          {touched.email && errors.email ? <div>{errors.email}</div> : null}
           <button type="submit">Submit</button>
         </form>
       </Card>
