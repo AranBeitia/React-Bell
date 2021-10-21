@@ -15,13 +15,18 @@ export const Button = styled.button`
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.bodyBg};
+		background-color: transparent;
 		color: ${({ theme }) => theme.text};
+		border: 2px solid ${({ theme }) => theme.text};
 	}
 
 	a {
 		color: ${({ theme }) => theme.bodyBg};
 		text-decoration: none;
+
+		&:hover {
+			color: ${({ theme }) => theme.text};
+		}
 	}
 `
 
