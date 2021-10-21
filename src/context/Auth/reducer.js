@@ -29,10 +29,6 @@ const reducer = (state, action) => {
 		case actionTypes.LOGIN: {
 			return {
 				...state,
-<<<<<<< HEAD
-				isLoading: false,
-=======
->>>>>>> devel
 				isAuth: true,
 			}
 		}
@@ -77,33 +73,6 @@ function AuthProvider({ children }) {
 		},
 		logout: () => {
 			dispatch({ type: actionTypes.LOGOUT })
-<<<<<<< HEAD
-		},
-		// login: (values) => {
-		// 	dispatch({
-		// 		type: actionTypes.USER,
-		// 		payload: {
-		// 			name: values.name,
-		// 			lastName: values.lastName,
-		// 			email: values.email,
-		// 		},
-		// 	})
-		// 	dispatch({ type: actionTypes.AUTH, payload: true })
-		// },
-		// logout: () => {
-		// 	dispatch({
-		// 		type: actionTypes.USER,
-		// 		payload: {},
-		// 	})
-		// 	dispatch({ type: actionTypes.AUTH, payload: false })
-		// },
-		handleChange: (e) => {
-			dispatch({
-				type: actionTypes.USER,
-				payload: { [e.target.name]: e.target.value },
-			})
-=======
->>>>>>> devel
 		},
 		getTheme: () => {
 			theme === 'dark'

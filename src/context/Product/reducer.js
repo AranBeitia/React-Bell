@@ -94,13 +94,6 @@ function ProductProvider({ children }) {
 
 	const value = {
 		...state,
-<<<<<<< HEAD
-		handleAddToCart: (productId) => {
-			dispatch({type: actionTypes.CART_ITEMS, payload:{
-				id:productId
-			}})
-			console.log(productId)
-=======
 		addToCart: (productId) => {
 			dispatch({ type: actionTypes.CART_ITEMS })
 			const updateCartItem = cartItems.map((item) => item)
@@ -113,7 +106,6 @@ function ProductProvider({ children }) {
 		},
 		removeCart: () => {
 			dispatch({ type: actionTypes.REMOVE_ITEM })
->>>>>>> devel
 		},
 	}
 
