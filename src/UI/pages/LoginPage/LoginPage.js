@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import * as routes from '../../../constants/routes'
 import withHeader from '../../../hoc/withHeader'
@@ -6,27 +6,38 @@ import LoginStyle from './LoginPage.style'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import { useAuth } from '../../../context/Auth/reducer'
-
+import { useFormik } from 'formik'
 import Card from 'react-bootstrap/Card'
+
 function LoginPage() {
-	const { login, isAuth, handleChange, user } = useAuth()
-	// const [formValues, setFormValues] = useState({
-	//   name: "",
-	//   lastName: "",
-	//   email: "",
-	// });
+	const { login, isAuth } = useAuth()
+	const formik = useFormik({
+		initialValues: {
+			name: '',
+			lastName: '',
+			email: '',
+		},
+		validate: (values) => {
+			let errors = {}
+
+			if (!values.name) {
+				errors.name = 'Required'
+			}
+			if (!values.lastName) {
+				errors.lastName = 'Required'
+			}
+			if (!values.email) {
+				errors.email = 'Required'
+			}
+			return errors
+		},
+	})
+	const { values, handleChange, handleBlur, touched, errors } = formik
+	console.log(values, errors, touched)
 
 	if (isAuth) {
 		return <Redirect to={routes.HOME} />
 	}
-	// const handleChange = (e) => {
-	//   setFormValues((prevState) => {
-	//     return {
-	//       ...prevState,
-	//       [e.target.name]: e.target.value,
-	//     };
-	//   });
-	// };
 
 	return (
 		<LoginStyle>
@@ -37,7 +48,7 @@ function LoginPage() {
 					className="form"
 					onSubmit={(e) => {
 						e.preventDefault()
-						login()
+						login(values)
 					}}
 				>
 					<InputGroup className="mb-3">
@@ -46,15 +57,23 @@ function LoginPage() {
 							aria-label="name"
 							name="name"
 							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.name}
 						/>
+						{touched.name && errors.name ? <div>{errors.name}</div> : null}
 					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl
-							placeholder="last name"
+							placeholder="lastname"
 							aria-label="lastName"
 							name="lastName"
 							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.lastName}
 						/>
+						{touched.lastName && errors.lastName ? (
+							<div>{errors.lastName}</div>
+						) : null}
 					</InputGroup>
 					<InputGroup className="mb-3">
 						<FormControl
@@ -62,8 +81,11 @@ function LoginPage() {
 							aria-label="email"
 							name="email"
 							onChange={handleChange}
+							onBlur={handleBlur}
+							value={values.email}
 						/>
 					</InputGroup>
+					{touched.email && errors.email ? <div>{errors.email}</div> : null}
 					<button type="submit">Submit</button>
 				</form>
 			</Card>

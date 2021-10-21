@@ -6,9 +6,12 @@ import { darkTheme, lightTheme } from '../../UI/components/Theme/Theme'
 const AuthContext = createContext()
 
 export const initialState = {
-	user: {},
 	isAuth: false,
-	isLoading: false,
+	user: {
+		name: '',
+		lastname: '',
+		email: '',
+	},
 	theme: 'dark',
 }
 
@@ -68,8 +71,16 @@ function AuthProvider({ children }) {
 
 	const value = {
 		...state,
-		login: () => {
-			dispatch({ type: actionTypes.LOGIN })
+		login: (values) => {
+			dispatch({
+				type: actionTypes.USER,
+				payload: {
+					name: values.name,
+					lastName: values.lastName,
+					email: values.email,
+				},
+			})
+			dispatch({ type: actionTypes.AUTH, payload: true })
 		},
 		logout: () => {
 			dispatch({ type: actionTypes.LOGOUT })
