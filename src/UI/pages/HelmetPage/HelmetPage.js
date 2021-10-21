@@ -26,8 +26,7 @@ function HelmetPage(props) {
 				<p className="container">{catSelected.title}</p>
 			</header>
 
-			<main className="container">
-				<h1>gallery</h1>
+			<main className="container gallery">
 				{catSelected.products.map((i) => (
 					<Card key={i.id} bg="dark" style={{ width: '18rem' }}>
 						<p>{i.title}</p>
@@ -39,6 +38,7 @@ function HelmetPage(props) {
 
 			<aside>
 				<div className="shopping-cart">
+					<p>buy</p>
 					<ul>
 						{/* {cartItems.map((item) => (
 							<li key={item.id}>
