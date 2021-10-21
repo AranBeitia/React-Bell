@@ -7,6 +7,7 @@ import { Button } from '../../components/Button/Button.style'
 
 function HelmetPage(props) {
 	const { categories, cartItems, handleAddToCart } = useProduct()
+
 	const category = props.match.params.category
 	const catSelected = categories.find((item) => item.url === category)
 	// const handleAddToCart = (productId) => {
