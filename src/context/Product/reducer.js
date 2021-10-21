@@ -9,6 +9,8 @@ export const initialState = {
 	categories: [],
 	cartItems: [],
 	isLoading: false,
+	isBuying: false,
+	categoryPath: '',
 }
 
 export const reducer = (state, action) => {
@@ -41,7 +43,14 @@ export const reducer = (state, action) => {
 		case actionTypes.CART_ITEMS: {
 			return {
 				...state,
-				cartItems: [...action.payload],
+				// cartItems: [...action.payload],
+				isBuying: true,
+			}
+		}
+		case actionTypes.REMOVE_ITEM: {
+			return {
+				...state,
+				isBuying: false,
 			}
 		}
 		default:
@@ -55,11 +64,16 @@ function ProductProvider({ children }) {
 
 	useEffect(() => {
 		const lastState = readLocalStorage('helmets')
+
 		if (!lastState && categories.length === 0) {
 			dispatch({ type: actionTypes.FETCH_REQUEST })
+
 			getProducts()
 				.then((data) => {
-					dispatch({ type: actionTypes.FETCH_SUCCESS, payload: data })
+					dispatch({
+						type: actionTypes.FETCH_SUCCESS,
+						payload: data,
+					})
 				})
 				.catch(() => {
 					dispatch({ type: actionTypes.FETCH_ERROR })
@@ -80,11 +94,26 @@ function ProductProvider({ children }) {
 
 	const value = {
 		...state,
+<<<<<<< HEAD
 		handleAddToCart: (productId) => {
 			dispatch({type: actionTypes.CART_ITEMS, payload:{
 				id:productId
 			}})
 			console.log(productId)
+=======
+		addToCart: (productId) => {
+			dispatch({ type: actionTypes.CART_ITEMS })
+			const updateCartItem = cartItems.map((item) => item)
+
+			console.log(updateCartItem)
+
+			// const productis = categoris.map(i =>)
+			// const newItem = productis.find((i) => i.id === productId)
+			// console.log(productis)
+		},
+		removeCart: () => {
+			dispatch({ type: actionTypes.REMOVE_ITEM })
+>>>>>>> devel
 		},
 	}
 

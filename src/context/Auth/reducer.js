@@ -29,7 +29,10 @@ const reducer = (state, action) => {
 		case actionTypes.LOGIN: {
 			return {
 				...state,
+<<<<<<< HEAD
 				isLoading: false,
+=======
+>>>>>>> devel
 				isAuth: true,
 			}
 		}
@@ -74,6 +77,7 @@ function AuthProvider({ children }) {
 		},
 		logout: () => {
 			dispatch({ type: actionTypes.LOGOUT })
+<<<<<<< HEAD
 		},
 		// login: (values) => {
 		// 	dispatch({
@@ -98,6 +102,8 @@ function AuthProvider({ children }) {
 				type: actionTypes.USER,
 				payload: { [e.target.name]: e.target.value },
 			})
+=======
+>>>>>>> devel
 		},
 		getTheme: () => {
 			theme === 'dark'

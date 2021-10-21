@@ -10,7 +10,6 @@ import ProfileMenu from '../ProfileMenu/ProfileMenu'
 
 function TheHeader(props) {
 	const { user, isAuth } = useAuth()
-
 	const [open, setOpen] = useState(false)
 
 	return (
