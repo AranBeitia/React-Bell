@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../context/Auth/reducer'
 import { ProductProvider } from '../../context/Product/reducer'
-import { ShoppingProvider } from '../../context/Shopping/reducer'
 import { GlobalStyles } from '../components/Theme/Global.styles'
 import { ThemeProvider } from 'styled-components'
 import { Switch, Route } from 'react-router-dom'
@@ -24,13 +23,11 @@ function App() {
 						exact
 						render={(routeProps) => <Home {...routeProps} />}
 					/>
-					<ShoppingProvider>
-						<Route
-							path={`${routes.HELMETS}/:category`}
-							exact
-							render={(routeProps) => <Helmets {...routeProps} />}
-						/>
-					</ShoppingProvider>
+					<Route
+						path={`${routes.HELMETS}/:category`}
+						exact
+						render={(routeProps) => <Helmets {...routeProps} />}
+					/>
 				</Switch>
 				<Switch>
 					<Route

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useProduct } from '../../../context/Product/reducer'
-import { useShopping } from '../../../context/Shopping/reducer'
+
 import withHeader from '../../../hoc/withHeader'
 import './HelmetPage.scss'
 import Card from 'react-bootstrap/Card'
@@ -10,23 +10,18 @@ import { Button } from '../../components/Button/Button.style'
 
 function HelmetPage() {
 	const { categories, cartItems, isBuying, addToCart } = useProduct()
-
 	const { category } = useParams()
-	const catSelected = categories.find((item) => item.url === category)
-
-	// const { prooducts, cart, addTooCart } = useShopping()
-
-	// const deleteFromCart = () => {}
+	const categorySelected = categories.find((item) => item.url === category)
 
 	const clearCart = () => {}
 	return (
 		<article>
-			<header className={`helmet__hero bg-img-${catSelected.id}`}>
-				<p className="container">{catSelected.title}</p>
+			<header className={`helmet__hero bg-img-${categorySelected.id}`}>
+				<p className="container">{categorySelected.title}</p>
 			</header>
 
 			<main className="container gallery">
-				{catSelected.products.map((item) => (
+				{categorySelected.products.map((item) => (
 					<Card key={item.id} bg="dark" style={{ width: '18rem' }}>
 						<p>{item.title}</p>
 						<img src={item.img} alt={item.title} />
