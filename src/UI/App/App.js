@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAuth } from '../../context/Auth/reducer'
-import { ProductProvider } from '../../context/Product/reducer'
 import { GlobalStyles } from '../components/Theme/Global.styles'
 import { ThemeProvider } from 'styled-components'
 import { Switch, Route } from 'react-router-dom'
@@ -16,27 +15,25 @@ function App() {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
-			<ProductProvider>
-				<Switch>
-					<Route
-						path={routes.HOME}
-						exact
-						render={(routeProps) => <Home {...routeProps} />}
-					/>
-					<Route
-						path={`${routes.HELMETS}/:category`}
-						exact
-						render={(routeProps) => <Helmets {...routeProps} />}
-					/>
-				</Switch>
-				<Switch>
-					<Route
-						path={routes.LOGIN}
-						exact
-						render={(routeProps) => <Login {...routeProps} />}
-					/>
-				</Switch>
-			</ProductProvider>
+			<Switch>
+				<Route
+					path={routes.HOME}
+					exact
+					render={(routeProps) => <Home {...routeProps} />}
+				/>
+				<Route
+					path={`${routes.HELMETS}/:category`}
+					exact
+					render={(routeProps) => <Helmets {...routeProps} />}
+				/>
+			</Switch>
+			<Switch>
+				<Route
+					path={routes.LOGIN}
+					exact
+					render={(routeProps) => <Login {...routeProps} />}
+				/>
+			</Switch>
 		</ThemeProvider>
 	)
 }

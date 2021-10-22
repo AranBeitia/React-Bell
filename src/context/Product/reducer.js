@@ -125,7 +125,7 @@ function ProductProvider({ children }) {
 	useEffect(() => {
 		const lastState = readLocalStorage('products')
 
-		if (!lastState && categories.length === 0) {
+		if (!lastState) {
 			dispatch({ type: actionTypes.FETCH_REQUEST })
 
 			getProducts()
@@ -143,7 +143,7 @@ function ProductProvider({ children }) {
 
 		dispatch({ type: actionTypes.CATEGORIES, payload: lastState.categories })
 		dispatch({ type: actionTypes.CART_ITEMS, payload: lastState.cartItems })
-	}, [])
+	}, [dispatch])
 
 	useEffect(() => {
 		writeLocalStorage(
