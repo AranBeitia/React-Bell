@@ -13,7 +13,12 @@ function ShoppingCart() {
 				{cartItems.map((item, index) => (
 					<ShoppingCartItem key={index} item={item} />
 				))}
-				{cartItems.length > 0 && <Button onClick={clear}>clear</Button>}
+				{cartItems.length > 0 && (
+					<div className="wrapper-btn">
+						<Button onClick={() => {}}>purchase</Button>
+						<Button onClick={clear}>clear</Button>
+					</div>
+				)}
 			</ul>
 		</ShoppingCartStyled>
 	)

@@ -46,16 +46,64 @@ export const reducer = (state, action) => {
 			const currentProduct = currentCategory.products.find(
 				(item) => item.id === action.payload.productId
 			)
+
+			const itemInCart = state.cartItems.find(
+				(item) => item.id === currentProduct.id
+			)
+
+			return itemInCart
+				? {
+						...state,
+						isShopping: true,
+						cartItems: state.cartItems.map((item) =>
+							item.id === currentProduct.id
+								? { ...item, quantity: item.quantity + 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						isShopping: true,
+						cartItems: [...state.cartItems, { ...currentProduct, quantity: 1 }],
+				  }
+		}
+		case actionTypes.ADD_ONE_FROM_CART: {
+			const addItem = state.cartItems.find((item) => item.id === action.payload)
+
+			console.log(action.payload)
+			return { ...state }
+		}
+		case actionTypes.REMOVE_ONE_FROM_CART: {
+			const deleteItem = state.cartItems.find(
+				(item) => item.id === action.payload
+			)
+
+			return deleteItem.quantity > 1
+				? {
+						...state,
+						cartItems: state.cartItems.map((item) =>
+							item.id === deleteItem.id
+								? { ...item, quantity: item.quantity - 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						cartItems: state.cartItems.filter(
+							(item) => item.id !== deleteItem.id
+						),
+				  }
+		}
+		case actionTypes.REMOVE_ALL_FROM_CART: {
 			return {
 				...state,
-				isShopping: true,
-				cartItems: [...state.cartItems, currentProduct],
+				cartItems: state.cartItems.filter((item) => item.id !== action.payload),
 			}
 		}
 		case actionTypes.CLEAR: {
 			return {
 				...state,
-				cartItems: [],
+				cartItems: state.cartItems,
 				isShopping: false,
 			}
 		}
@@ -106,8 +154,19 @@ function ProductProvider({ children }) {
 				payload: { productId, category },
 			})
 		},
-		removeCart: () => {
-			dispatch({ type: actionTypes.REMOVE_ITEM })
+		add: (productId) => {
+			dispatch({ type: actionTypes.ADD_ONE_FROM_CART, payload: productId })
+		},
+		remove: (productId, all = false) => {
+			all
+				? dispatch({
+						type: actionTypes.REMOVE_ALL_FROM_CART,
+						payload: productId,
+				  })
+				: dispatch({
+						type: actionTypes.REMOVE_ONE_FROM_CART,
+						payload: productId,
+				  })
 		},
 		clear: () => {
 			dispatch({ type: actionTypes.CLEAR })

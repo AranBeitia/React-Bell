@@ -11,4 +11,12 @@ export const ShoppingCartStyled = styled.aside`
 	border-radius: 4px;
 	padding: 1rem;
 	overflow: hidden;
+
+	.wrapper-btn {
+		display: flex;
+
+		& > * {
+			margin: 0 1rem;
+		}
+	}
 `
