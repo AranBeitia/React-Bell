@@ -13,6 +13,7 @@ export const initialState = {
     email: "",
   },
   theme: "dark",
+  agree: false,
 };
 
 const reducer = (state, action) => {
@@ -40,12 +41,19 @@ const reducer = (state, action) => {
         ...state,
         user: {},
         isAuth: false,
+        agree: false,
       };
     }
     case actionTypes.THEME: {
       return {
         ...state,
         theme: action.payload,
+      };
+    }
+    case actionTypes.AGREE: {
+      return {
+        ...state,
+        agree: action.payload,
       };
     }
     default:
@@ -55,7 +63,7 @@ const reducer = (state, action) => {
 
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { user, isAuth, theme } = state;
+  const { user, isAuth, theme, agree } = state;
 
   useEffect(() => {
     const lastState = readLocalStorage("user");
@@ -84,6 +92,7 @@ function AuthProvider({ children }) {
     },
     logout: () => {
       dispatch({ type: actionTypes.LOGOUT });
+      dispatch({ type: actionTypes.AGREE, payload: false });
     },
     getTheme: () => {
       theme === "dark"
@@ -91,6 +100,11 @@ function AuthProvider({ children }) {
         : dispatch({ type: actionTypes.THEME, payload: "dark" });
     },
     themeMode: theme === "light" ? lightTheme : darkTheme,
+    setAgree: () => {
+      agree === false
+        ? dispatch({ type: actionTypes.AGREE, payload: true })
+        : dispatch({ type: actionTypes.AGREE, payload: false });
+    },
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

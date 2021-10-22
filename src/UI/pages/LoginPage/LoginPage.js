@@ -7,33 +7,34 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { useAuth } from "../../../context/Auth/reducer";
 import { useFormik } from "formik";
-
 import Card from "react-bootstrap/Card";
-function LoginPage() {
-  const { login, isAuth } = useAuth();
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      lastName: "",
-      email: "",
-    },
-    validate: (values) => {
-      let errors = {};
+import * as Yup from "yup";
+import { Button } from "../../components/Button/Button.style";
 
-      if (!values.name) {
-        errors.name = "Required";
-      }
-      if (!values.lastName) {
-        errors.lastName = "Required";
-      }
-      if (!values.email) {
-        errors.email = "Required";
-      }
-      return errors;
+const initialValues = {
+  name: "",
+  lastName: "",
+  email: "",
+};
+
+const validationSchema = Yup.object({
+  name: Yup.string().min(2).required("Required"),
+  lastName: Yup.string().min(2).required("Required"),
+  email: Yup.string().min(9).email("Invalid email format").required("Required"),
+});
+
+function LoginPage() {
+  const { login, isAuth, agree, setAgree } = useAuth();
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: (values) => {
+      login(values);
     },
   });
-  const { values, handleChange, handleBlur, touched, errors } = formik;
-  console.log(values, errors, touched);
+  const { values, handleChange, handleBlur, touched, errors, handleSubmit } =
+    formik;
 
   if (isAuth) {
     return <Redirect to={routes.HOME} />;
@@ -43,14 +44,7 @@ function LoginPage() {
     <LoginStyle>
       <Card>
         <h1>login page</h1>
-        <form
-          action=""
-          className="form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            login(values);
-          }}
-        >
+        <form action="" className="form" onSubmit={handleSubmit}>
           <InputGroup className="mb-3">
             <FormControl
               placeholder="name"
@@ -86,7 +80,20 @@ function LoginPage() {
             />
           </InputGroup>
           {touched.email && errors.email ? <div>{errors.email}</div> : null}
-          <button type="submit">Submit</button>
+          <InputGroup className="mb-3">
+            <input
+              type="checkbox"
+              name="agree"
+              onChange={setAgree}
+              value={agree}
+            />
+            <label htmlFor="agree">
+              <div>Click here to show that you are not a robot :)</div>
+            </label>
+          </InputGroup>
+          <Button type="submit" disabled={!agree}>
+            Submit
+          </Button>
         </form>
       </Card>
     </LoginStyle>
