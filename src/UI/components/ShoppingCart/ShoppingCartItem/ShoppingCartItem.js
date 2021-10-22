@@ -14,7 +14,7 @@ function ShoppingCartItem({ item }) {
 					price {item.price}€ X {item.quantity} = {item.price * item.quantity}
 				</span>
 				<div className="cart-item__cta">
-					<ButtonSmall onClick={() => add()}>+</ButtonSmall>
+					<ButtonSmall onClick={() => add(item.id)}>+</ButtonSmall>
 					<ButtonSmall onClick={() => remove(item.id)}>-</ButtonSmall>
 					<ButtonSmall onClick={() => remove(item.id, true)}>x</ButtonSmall>
 				</div>

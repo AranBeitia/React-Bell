@@ -70,8 +70,14 @@ export const reducer = (state, action) => {
 		case actionTypes.ADD_ONE_FROM_CART: {
 			const addItem = state.cartItems.find((item) => item.id === action.payload)
 
-			console.log(action.payload)
-			return { ...state }
+			return {
+				...state,
+				cartItems: state.cartItems.map((item) =>
+					item.id === addItem.id
+						? { ...item, quantity: item.quantity + 1 }
+						: item
+				),
+			}
 		}
 		case actionTypes.REMOVE_ONE_FROM_CART: {
 			const deleteItem = state.cartItems.find(
