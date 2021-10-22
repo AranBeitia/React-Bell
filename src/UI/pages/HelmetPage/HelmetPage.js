@@ -1,55 +1,46 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { useProduct } from '../../../context/Product/reducer'
+
 import withHeader from '../../../hoc/withHeader'
 import './HelmetPage.scss'
 import Card from 'react-bootstrap/Card'
+
+import ShoppingCart from '../../components/ShoppingCart'
 import { Button } from '../../components/Button/Button.style'
 
-function HelmetPage(props) {
-	const { categories, cartItems, handleAddToCart } = useProduct()
+function HelmetPage() {
+	const { categories, addToCart, isShopping } = useProduct()
+	const { category } = useParams()
+	// console.log(category)
+	// console.log(categories)
+	let categorySelected = {}
 
-	const category = props.match.params.category
-	const catSelected = categories.find((item) => item.url === category)
-	// const handleAddToCart = (productId) => {
-	// 	console.log(productId)
-	// }
-	// const handleAddToCart = (productId) => {
-	// 	const foundProduct = catSelected.products.find(
-	// 		(product) => product.id === productId
-	// 	)
-
-	// 	// setCartItems(foundProduct)
-	// }
+	if (categories.length > 0) {
+		categorySelected = categories.find((item) => item.url === category)
+	}
 
 	return (
 		<article>
-			<header className={`helmet__hero bg-img-${catSelected.id}`}>
-				<p className="container">{catSelected.title}</p>
+			<header className={`helmet__hero bg-img-${categorySelected.id}`}>
+				<h1 className="container helmet__title">{categorySelected.title}</h1>
 			</header>
 
 			<main className="container gallery">
-				{catSelected.products.map((i) => (
-					<Card key={i.id} bg="dark" style={{ width: '18rem' }}>
-						<p>{i.title}</p>
-						<img src={i.img} alt={i.title} />
-						<Button onClick={() => handleAddToCart(i.id)}>Add to cart</Button>
-					</Card>
-				))}
+				{categorySelected.products &&
+					categorySelected.products.map((item) => (
+						<Card key={item.id} bg="dark">
+							<Card.Img variant="top" src={item.img} alt={item.title} />
+							<Card.Body>
+								<Card.Title>{item.title}</Card.Title>
+								<Button onClick={() => addToCart(item.id, category)}>
+									Add to cart
+								</Button>
+							</Card.Body>
+						</Card>
+					))}
 			</main>
-
-			<aside>
-				<div className="shopping-cart">
-					<p>buy</p>
-					<ul>
-						{/* {cartItems.map((item) => (
-							<li key={item.id}>
-								<p>{item.title}</p>
-								<img src={item.img} alt={item.title} />
-							</li>
-						))} */}
-					</ul>
-				</div>
-			</aside>
+			{isShopping && <ShoppingCart />}
 		</article>
 	)
 }

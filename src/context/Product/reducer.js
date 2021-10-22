@@ -9,6 +9,7 @@ export const initialState = {
 	categories: [],
 	cartItems: [],
 	isLoading: false,
+	isShopping: false,
 }
 
 export const reducer = (state, action) => {
@@ -38,10 +39,78 @@ export const reducer = (state, action) => {
 				categories: [...action.payload],
 			}
 		}
-		case actionTypes.CART_ITEMS: {
+		case actionTypes.ADD_TO_CART: {
+			const currentCategory = state.categories.find(
+				(item) => item.url === action.payload.category
+			)
+			const currentProduct = currentCategory.products.find(
+				(item) => item.id === action.payload.productId
+			)
+
+			const itemInCart = state.cartItems.find(
+				(item) => item.id === currentProduct.id
+			)
+
+			return itemInCart
+				? {
+						...state,
+						isShopping: true,
+						cartItems: state.cartItems.map((item) =>
+							item.id === currentProduct.id
+								? { ...item, quantity: item.quantity + 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						isShopping: true,
+						cartItems: [...state.cartItems, { ...currentProduct, quantity: 1 }],
+				  }
+		}
+		case actionTypes.ADD_ONE_FROM_CART: {
+			const addItem = state.cartItems.find((item) => item.id === action.payload)
+
 			return {
 				...state,
-				cartItems: [...action.payload],
+				cartItems: state.cartItems.map((item) =>
+					item.id === addItem.id
+						? { ...item, quantity: item.quantity + 1 }
+						: item
+				),
+			}
+		}
+		case actionTypes.REMOVE_ONE_FROM_CART: {
+			const deleteItem = state.cartItems.find(
+				(item) => item.id === action.payload
+			)
+
+			return deleteItem.quantity > 1
+				? {
+						...state,
+						cartItems: state.cartItems.map((item) =>
+							item.id === deleteItem.id
+								? { ...item, quantity: item.quantity - 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						cartItems: state.cartItems.filter(
+							(item) => item.id !== deleteItem.id
+						),
+				  }
+		}
+		case actionTypes.REMOVE_ALL_FROM_CART: {
+			return {
+				...state,
+				cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+			}
+		}
+		case actionTypes.CLEAR: {
+			return {
+				...state,
+				cartItems: state.cartItems,
+				isShopping: false,
 			}
 		}
 		default:
@@ -54,12 +123,17 @@ function ProductProvider({ children }) {
 	const { categories, cartItems, isLoading } = state
 
 	useEffect(() => {
-		const lastState = readLocalStorage('helmets')
-		if (!lastState && categories.length === 0) {
+		const lastState = readLocalStorage('products')
+
+		if (!lastState) {
 			dispatch({ type: actionTypes.FETCH_REQUEST })
+
 			getProducts()
 				.then((data) => {
-					dispatch({ type: actionTypes.FETCH_SUCCESS, payload: data })
+					dispatch({
+						type: actionTypes.FETCH_SUCCESS,
+						payload: data,
+					})
 				})
 				.catch(() => {
 					dispatch({ type: actionTypes.FETCH_ERROR })
@@ -69,7 +143,7 @@ function ProductProvider({ children }) {
 
 		dispatch({ type: actionTypes.CATEGORIES, payload: lastState.categories })
 		dispatch({ type: actionTypes.CART_ITEMS, payload: lastState.cartItems })
-	}, [])
+	}, [dispatch])
 
 	useEffect(() => {
 		writeLocalStorage(
@@ -80,8 +154,28 @@ function ProductProvider({ children }) {
 
 	const value = {
 		...state,
-		handleAddToCart: (productId) => {
-			console.log(productId)
+		addToCart: (productId, category) => {
+			dispatch({
+				type: actionTypes.ADD_TO_CART,
+				payload: { productId, category },
+			})
+		},
+		add: (productId) => {
+			dispatch({ type: actionTypes.ADD_ONE_FROM_CART, payload: productId })
+		},
+		remove: (productId, all = false) => {
+			all
+				? dispatch({
+						type: actionTypes.REMOVE_ALL_FROM_CART,
+						payload: productId,
+				  })
+				: dispatch({
+						type: actionTypes.REMOVE_ONE_FROM_CART,
+						payload: productId,
+				  })
+		},
+		clear: () => {
+			dispatch({ type: actionTypes.CLEAR })
 		},
 	}
 

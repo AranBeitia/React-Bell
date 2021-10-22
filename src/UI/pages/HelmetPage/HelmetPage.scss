@@ -1,23 +1,21 @@
 .helmet {
 	&__hero {
-		min-height: 30vh;
-		background-position: center;
+		display: flex;
+		align-items: flex-end;
+		min-height: 40vh;
+		background-position: bottom;
+		background-repeat: no-repeat;
+	}
+
+	&__title {
+		color: white;
+		padding-bottom: 1rem;
 	}
 }
 
 .gallery {
-	display: flex;
-}
-
-.shopping-cart {
-	position: absolute;
-	top: 70px;
-	right: 0;
-	width: 300px;
-	//transform: translateX(-100%);
-	background-color: red;
-	border: 1px solid #161718;
-	border-radius: 4px;
-	padding: 1rem;
-	overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1rem;
+	padding: 1rem 0;
 }

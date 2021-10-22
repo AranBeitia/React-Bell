@@ -47,3 +47,12 @@ export const ButtonIcon = styled.button`
 		filter: brightness(1.2);
 	}
 `
+
+export const ButtonSmall = styled(Button)`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 20px;
+	max-height: 20px;
+	margin: 0.2rem;
+`
