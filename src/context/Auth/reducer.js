@@ -7,13 +7,10 @@ const AuthContext = createContext();
 
 export const initialState = {
   isAuth: false,
-  user: {
-    name: "",
-    lastname: "",
-    email: "",
-  },
+  user: [],
   theme: "dark",
   agree: false,
+  isLogged: true,
 };
 
 const reducer = (state, action) => {
@@ -21,7 +18,7 @@ const reducer = (state, action) => {
     case actionTypes.USER: {
       return {
         ...state,
-        user: { ...action.payload },
+        user: [...state.user, { ...action.payload }],
       };
     }
     case actionTypes.AUTH: {
@@ -39,7 +36,7 @@ const reducer = (state, action) => {
     case actionTypes.LOGOUT: {
       return {
         ...state,
-        user: {},
+        user: [...state.user],
         isAuth: false,
         agree: false,
       };
@@ -55,6 +52,24 @@ const reducer = (state, action) => {
         ...state,
         agree: action.payload,
       };
+    }
+    case actionTypes.ISLOGGED: {
+      return {
+        ...state,
+        isLogged: action.payload,
+      };
+    }
+    case actionTypes.ISLOGGED: {
+      const isThere = state.user.find((user) => user.email === action.payload);
+      return isThere
+        ? {
+            ...state,
+            isLogged: true,
+          }
+        : {
+            ...state,
+            isLogged: false,
+          };
     }
     default:
       return state;
@@ -104,6 +119,14 @@ function AuthProvider({ children }) {
       agree === false
         ? dispatch({ type: actionTypes.AGREE, payload: true })
         : dispatch({ type: actionTypes.AGREE, payload: false });
+    },
+    setIsLogged: (isLogged) => {
+      isLogged
+        ? dispatch({ type: actionTypes.ISLOGGED, payload: false })
+        : dispatch({ type: actionTypes.ISLOGGED, payload: true });
+    },
+    isRegistered: (email) => {
+      dispatch({ type: actionTypes.ISREGISTERED, payload: email });
     },
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
