@@ -5,7 +5,7 @@ import ShoppingCartItem from "../ShoppingCart/ShoppingCartItem";
 import { Button } from "../Button/Button.style";
 
 function ShoppingCart() {
-  const { cartItems, minimize, clear } = useProduct();
+  const { cartItems, minimize, clear, total } = useProduct();
   return (
     <ShoppingCartStyled>
       <p>Shopping cart</p>
@@ -21,6 +21,7 @@ function ShoppingCart() {
           </div>
         )}
       </ul>
+      <div className="total-screen">Total price: {total} €</div>
     </ShoppingCartStyled>
   );
 }

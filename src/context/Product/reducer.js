@@ -10,6 +10,7 @@ export const initialState = {
   cartItems: [],
   isLoading: false,
   isShopping: false,
+  total: 0,
 };
 
 export const reducer = (state, action) => {
@@ -57,7 +58,10 @@ export const reducer = (state, action) => {
             isShopping: true,
             cartItems: state.cartItems.map((item) =>
               item.id === currentProduct.id
-                ? { ...item, quantity: item.quantity + 1 }
+                ? {
+                    ...item,
+                    quantity: item.quantity + 1,
+                  }
                 : item
             ),
           }
@@ -120,7 +124,42 @@ export const reducer = (state, action) => {
         ...state,
         cartItems: [],
         isShopping: false,
+        total: 0,
       };
+    }
+    case actionTypes.TOTAL: {
+      const subTotals = state.cartItems.map(
+        (item) => item.price * item.quantity
+      );
+      return state.cartItems.length > 1
+        ? {
+            ...state,
+            total: subTotals.reduce((a, b) => a + b, 0),
+          }
+        : {
+            ...state,
+            total: subTotals[0],
+          };
+    }
+    case actionTypes.TOTAL_REMOVE_ONE_CAT: {
+      const removedItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+      const subTotalsArr = removedItems.map(
+        (item) => item.price * item.quantity
+      );
+
+      const totalSum = subTotalsArr.reduce((a, b) => a + b, 0);
+
+      return state.cartItems.length > 1
+        ? {
+            ...state,
+            total: totalSum,
+          }
+        : {
+            ...state,
+            total: subTotalsArr[0],
+          };
     }
     default:
       return state;
@@ -169,20 +208,33 @@ function ProductProvider({ children }) {
         type: actionTypes.ADD_TO_CART,
         payload: { productId, category },
       });
+      dispatch({
+        type: actionTypes.TOTAL,
+      });
     },
     add: (productId) => {
       dispatch({ type: actionTypes.ADD_ONE_FROM_CART, payload: productId });
+      dispatch({
+        type: actionTypes.TOTAL,
+      });
     },
     remove: (productId, all = false) => {
-      all
-        ? dispatch({
-            type: actionTypes.REMOVE_ALL_FROM_CART,
-            payload: productId,
-          })
-        : dispatch({
-            type: actionTypes.REMOVE_ONE_FROM_CART,
-            payload: productId,
-          });
+      if (all) {
+        dispatch({
+          type: actionTypes.REMOVE_ALL_FROM_CART,
+          payload: productId,
+        });
+        dispatch({
+          type: actionTypes.TOTAL_REMOVE_ONE_CAT,
+          payload: productId,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.REMOVE_ONE_FROM_CART,
+          payload: productId,
+        });
+        dispatch({ type: actionTypes.TOTAL });
+      }
     },
     minimize: () => {
       dispatch({ type: actionTypes.MINIMIZE });
