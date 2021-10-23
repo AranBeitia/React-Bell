@@ -133,6 +133,7 @@ function ProductProvider({ children }) {
 
   useEffect(() => {
     const lastState = readLocalStorage("products");
+    window.scrollTo(0, 0);
 
     if (!lastState) {
       dispatch({ type: actionTypes.FETCH_REQUEST });

@@ -7,7 +7,7 @@ import * as routes from '../../constants/routes'
 
 import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
-import Login from '../pages/LoginPage'
+import Auth from '../pages/AuthPage'
 
 function App() {
 	const { themeMode } = useAuth()
@@ -29,9 +29,9 @@ function App() {
 			</Switch>
 			<Switch>
 				<Route
-					path={routes.LOGIN}
+					path={routes.AUTH}
 					exact
-					render={(routeProps) => <Login {...routeProps} />}
+					render={(routeProps) => <Auth {...routeProps} />}
 				/>
 			</Switch>
 		</ThemeProvider>
