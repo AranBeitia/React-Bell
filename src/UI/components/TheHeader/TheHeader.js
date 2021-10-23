@@ -29,7 +29,7 @@ function TheHeader(props) {
 					</div>
 				) : (
 					<Button>
-						<NavLink to={routes.LOGIN}>Login / Register</NavLink>
+						<NavLink to={routes.AUTH}>Login / Register</NavLink>
 					</Button>
 				)}
 			</nav>

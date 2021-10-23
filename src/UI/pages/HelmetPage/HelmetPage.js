@@ -12,8 +12,6 @@ import { Button } from '../../components/Button/Button.style'
 function HelmetPage() {
 	const { categories, addToCart, isShopping } = useProduct()
 	const { category } = useParams()
-	// console.log(category)
-	// console.log(categories)
 	let categorySelected = {}
 
 	if (categories.length > 0) {
