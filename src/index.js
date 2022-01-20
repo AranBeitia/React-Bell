@@ -7,16 +7,19 @@ import App from './UI/App'
 import reportWebVitals from './reportWebVitals'
 import { AuthProvider } from './context/Auth/reducer'
 import { ProductProvider } from './context/Product/reducer'
+import Provider from './redux/Provider'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Router>
-			<AuthProvider>
-				<ProductProvider>
-					<App />
-				</ProductProvider>
-			</AuthProvider>
-		</Router>
+		<Provider>
+			<Router>
+				<AuthProvider>
+					<ProductProvider>
+						<App />
+					</ProductProvider>
+				</AuthProvider>
+			</Router>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )

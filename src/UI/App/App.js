@@ -9,6 +9,8 @@ import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
 import Auth from '../pages/AuthPage'
 
+import Redux from '../components/Redux'
+
 function App() {
 	const { themeMode } = useAuth()
 
@@ -32,6 +34,12 @@ function App() {
 					path={routes.AUTH}
 					exact
 					render={(routeProps) => <Auth {...routeProps} />}
+				/>
+			</Switch>
+			<Switch>
+				<Route
+					path="/redux"
+					render={(routeProps) => <Redux {...routeProps} />}
 				/>
 			</Switch>
 		</ThemeProvider>
