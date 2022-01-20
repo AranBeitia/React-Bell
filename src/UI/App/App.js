@@ -9,7 +9,7 @@ import Home from '../pages/HomePage'
 import Helmets from '../pages/HelmetPage'
 import Auth from '../pages/AuthPage'
 
-import Redux from '../components/Redux'
+import Redux from '../components/redux/Redux'
 
 function App() {
 	const { themeMode } = useAuth()

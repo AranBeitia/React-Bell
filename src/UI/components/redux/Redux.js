@@ -1,6 +1,6 @@
-import reduxImg from '../assets/img/street/street1.jpg'
-import reduxGif from '../assets/img/logo.svg'
-
+import reduxImg from '../../assets/img/street/street1.jpg'
+import reduxGif from '../../assets/img/logo.svg'
+import Counter from './Counter'
 const Redux = () => {
 	return (
 		<div style={{ textAlign: 'center' }}>
@@ -42,6 +42,7 @@ const Redux = () => {
 			</ul>
 			<img src={reduxImg} alt="Diagrama Redux" width="200" />
 			<img src={reduxGif} alt="Diagrama Redux Animado" width="100" />
+			<Counter />
 		</div>
 	)
 }
